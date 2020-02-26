@@ -1,6 +1,8 @@
 ---
 title: "Species’ Distribution Modeling for Conservation Educators and Practitioners - Synthesis"
-output: html_document
+output: 
+  html_document: 
+    toc: yes
 ---
 
 Author: Richard G. Pearson
@@ -15,26 +17,7 @@ ABSTRACT
 
 Models that predict distributions of species by combining known occurrence records with digital layers of environmental variables have much potential for application in conservation. Through using this module, teachers will enable students to develop species’ distribution models, to apply the models across a series of analyses, and to interpret predictions accurately. Part A introduces the modeling approach, outlines key concepts and terminology, and describes questions that may be addressed using the approach. A theoretical framework that is fundamental to ensuring that students understand the uses and limitations of the models is then described. Part B details the main steps in building and testing a distribution model. Part C describes three case studies that illustrate applications of the models: i) Predicting distributions of known and unknown species in Madagascar; ii) Predicting global invasions by plants of South African origin; and iii) Modeling the potential impacts of climate change on species’ distributions in Britain and Ireland.  This module is targeted at a level suitable for teaching graduate students and conservation professionals.
 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\newpage
 
 Reproduction of this material is authorized by the recipient institution for non-profit/non-commercial educational use and distribution to students enrolled in course work at the institution. Distribution may be made by photocopying or via the institution's intranet restricted to enrolled students. Recipient agrees not to make commercial use, such as, without limitation, in publications distributed by a commercial publisher, without the prior express written consent of AMNH.
 
@@ -47,43 +30,18 @@ All reproduction or distribution must provide full citation of the original work
 This material is based on work supported by the National Science Foundation under the Course, Curriculum and Laboratory Improvement program (NSF 0442490), and the United States Fish and Wildlife Service (Grant Agreement No. 98210-1-G017).
 
 Any opinions, findings and conclusions, or recommendations expressed in this material are those of the authors and do not necessarily reflect the views of the American Museum of Natural History, the National Science Foundation, or the United States Fish and Wildlife Service.
- 
-TABLE OF CONTENTS
 
-PART A: INTRODUCTION AND THEORY	4
-LEARNING OBJECTIVES	4
-INTRODUCTION	4
-WHAT IS A SPECIES’ DISTRIBUTION MODEL?	5
-THEORETICAL FRAMEWORK	9
-GEOGRAPHICAL VERSUS ENVIRONMENTAL SPACE	9
-ESTIMATING NICHES AND DISTRIBUTIONS	12
-USES OF SPECIES’ DISTRIBUTION MODELS	16
-PART B: DEVELOPING A SPECIES’ DISTRIBUTION MODEL	18
-DATA TYPES AND SOURCES	18
-BIOLOGICAL DATA	20
-ENVIRONMENTAL DATA	21
-MODELING ALGORITHMS	22
-DIFFERENCES BETWEEN METHODS AND SELECTION OF ‘BEST’ MODELS	26
-ASSESSING PREDICTIVE PERFORMANCE	27
-STRATEGIES FOR OBTAINING TEST DATA	27
-THE PRESENCE/ABSENCE CONFUSION MATRIX	29
-SELECTING THRESHOLDS OF OCCURRENCE	32
-THRESHOLD-INDEPENDENT ASSESSMENT	36
-CHOOSING A SUITABLE TEST STATISTIC	38
-PART C: CASE STUDIES	39
-CASE STUDY 1: PREDICTING DISTRIBUTIONS OF KNOWN AND UNKNOWN SPECIES IN MADAGASCAR (BASED ON RAXWORTHY ET AL. 2003)	39
-CASE STUDY 2: SPECIES’ DISTRIBUTION MODELING AS A TOOL FOR PREDICTING INVASIONS OF NON-NATIVE PLANTS (BASED ON THUILLER ET AL. 2005)	40
-CASE STUDY 3: MODELING THE POTENTIAL IMPACTS OF CLIMATE CHANGE ON SPECIES’ DISTRIBUTIONS IN BRITAIN AND IRELAND (BASED ON BERRY ET AL. 2002)	41
-ACKNOWLEDGEMENTS	42
-REFERENCES	43
+\newpage
+
 
 Species’ Distribution Modeling for Conservation Educators and Practitioners
 
 Richard G. Pearson
 
-PART A: INTRODUCTION AND THEORY
+# PART A: INTRODUCTION AND THEORY
 
-Learning objectives
+## Learning objectives
+
 Through use of this synthesis, teachers will enable students to
 
 1.	Understand the theoretical underpinnings of species’ distribution models
@@ -91,13 +49,14 @@ Through use of this synthesis, teachers will enable students to
 3.	Test the predictive performance of a distribution model
 4.	Apply distribution models to address a range of conservation questions
 
-INTRODUCTION
+## INTRODUCTION
 
 Predicting species’ distributions has become an important component of conservation planning in recent years, and a wide variety of modeling techniques have been developed for this purpose (Guisan and Thuiller 2005). These models commonly utilize associations between environmental variables and known species’ occurrence records to identify environmental conditions within which populations can be maintained. The spatial distribution of environments that are suitable for the species can then be estimated across a study region. This approach has proven valuable for generating biogeographical information that can be applied across a broad range of fields, including conservation biology, ecology and evolutionary biology. The focus of this synthesis is on conservation-oriented applications, but the methods and theory discussed are also applicable in other fields (see Table 1 for a list of some uses of species’ distribution models in conservation biology and other disciplines).
 
 This synthesis aims to provide an overview of the theory and practice of species’ distribution modeling. Through use of the synthesis, teachers will enable students to understand the theoretical basis of distribution models, to run models using a variety of approaches, to test the predictive ability of models, and to apply the models to address a range of questions. Part A of the synthesis introduces the modeling approach and describes the usefulness of the models in addressing conservation questions. Part B details the main steps in building a distribution model, including selecting and obtaining suitable data, choosing a modeling algorithm, and statistically assessing predictive performance. Part C of the synthesis provides three case studies that demonstrate uses of species’ distribution models.
 
-What is a species’ distribution model?
+### What is a species’ distribution model?
+
 The most common strategy for estimating the actual or potential geographic distribution of a species is to characterize the environmental conditions that are suitable for the species, and to then identify where suitable environments are distributed in space. For example, if we are interested in modeling the distribution of a plant that is known to thrive in wet clay soils, then simply identifying locations with clay soils and high precipitation can generate an estimate of the species’ distribution. There are a number of reasons why the species may not actually occupy all suitable sites (e.g., geographic barriers that limit dispersal, competition from other species), which we will discuss later. However, this is the fundamental strategy common to most distribution models.
 
 The environmental conditions that are suitable for a species may be characterized using either a mechanistic or a correlative approach. Mechanistic models aim to incorporate physiologically limiting mechanisms in a species’ tolerance to environmental conditions. For example, Chuine and Beaubien (2001) modeled distributions of North American tree species by estimating responses to environmental variables (including mean daily temperature, daily precipitation, and night length) using mechanistic models of factors including frost injury, phenology, and reproductive success. Such mechanistic models require detailed understanding of the physiological response of species to environmental factors and are therefore difficult to develop for all but the most well understood species. 
@@ -124,11 +83,12 @@ Once these steps have been completed, and if model validation is successful, the
 
 This modeling approach has been variously termed ‘species distribution’, ‘ecological niche’, ‘environmental niche’, ‘habitat suitability’ and ‘bioclimate envelope’ modeling. Use of the term ‘species distribution modeling’ is widespread but it should be noted that the term is somewhat misleading since it is actually the distribution of suitable environments that is being modeled, rather than the species’ distribution per se. Regardless of the name used, the basic modeling process is essentially the same (see Part B) and the theoretical underpinnings of the models are similar. It is essential that these theoretical underpinnings are properly understood in order to interpret model outputs accurately. The following section describes this theoretical framework.
 
-THEORETICAL FRAMEWORK
+## THEORETICAL FRAMEWORK
 
 This section outlines some of the fundamental concepts that are crucial for understanding how species’ distribution models work, what types of questions they are suitable for addressing, and how model output should be interpreted.
 
-Geographical versus environmental space
+### Geographical versus environmental space
+
 We are used to thinking about the occurrence of species in geographical space; that is, the species’ distribution as plotted on a map. To understand species’ distribution models it is important to also think about species occurring in environmental space, which is a conceptual space defined by the environmental variables to which the species responds. The concept of environmental space has its foundations in ecological niche theory. The term ‘niche’ has a long and varied history of use in ecology (Chase and Leibold 2003), but the definition proposed by Hutchinson (1957) is most useful in the current context. Hutchinson defined the fundamental niche of a species as the set of environmental conditions within which a species can survive and persist. The fundamental niche may be thought of as an ‘n-dimensional hypervolume’, every point in which corresponds to a state of the environment that would permit the species to exist indefinitely (Hutchinson 1957, p. 416). It is the axes of this n-dimensional hypervolume that define environmental space.
 
 Visualizing a species’ distribution in both geographical and environmental space helps us to define some basic concepts that are crucial for species’ distribution modeling (Fig. 2). Notice that the observed localities constitute all that is known about the species’ actual distribution; the species is likely to occur in other areas in which it has not yet been detected (e.g., Fig. 2, area A). If the actual distribution is plotted in environmental space then we identify that part of environmental space that is occupied by the species, which we can define as the occupied niche.
@@ -146,7 +106,8 @@ Another important factor that we must be aware of is source-sink dynamics, which
 
 One more thing to be aware of before we move on is that some studies explicitly aim to only investigate one part of the fundamental niche, by using a limited set of predictor variables. For example, it is common when investigating the potential impacts of future climate change to focus only on how climate variables impact species’ distributions. A species’ niche defined only in terms of climate variables may be termed the climatic niche (Pearson and Dawson 2003), which represents the climatic conditions that are suitable for species existence. An approximation of the climatic niche may then be mapped in geographical space, giving what is commonly termed the bioclimate envelope (Huntley et al. 1995; Pearson and Dawson 2003).
 
-Estimating niches and distributions
+### Estimating niches and distributions
+
 Let us now consider the extent to which species’ distribution models can be used to estimate the niche and distribution of a species. We will assume in this section that the model algorithm is excellent at defining the relationship between observed occurrence localities and environmental variables; this will enable us to focus on understanding the ecological assumptions underlying distribution models. The ability of different modeling algorithms to identify the relationship between occurrence localities and environmental variables is discussed in Section 4. 
 
 Let us first ask what the aim of the modeling is: what element of a species’ distribution are we trying to estimate? There are many potential uses of the approach (Table 1) and these require modeling either the actual distribution or the potential distribution. For example, if a model is being used with the purpose of selecting sites that should be given high conservation priority, then modeling the actual distribution will be the aim (since there would be less priority given to conserving sites where the environment is suitable for the species, but the species is not present). In contrast, if the purpose is to identify sites that may be suitable for the reintroduction of an endangered species, then modeling the potential distribution is an appropriate aim. We will now consider the degree to which alternative aims are achievable using the species’ distribution modeling approach.
@@ -185,7 +146,9 @@ This observation may be regarded as a failure of the modeling approach (Woodward
 
  
 Figure 3. Diagram illustrating how a hypothetical species’ distribution model may be fitted to observed species occurrence records (using the same hypothetical case as in Fig. 2). A modelling technique (e.g. GARP, Maxent) is used to characterize the species’ niche in environmental space by relating observed occurrence localities to a suite of environmental variables. Notice that, in environmental space, the model may not identify either the species’ occupied niche or fundamental niche; rather, the model identifies only that part of the niche defined by the observed records. When projected back into geographical space, the model will identify parts of the actual distribution and potential distribution. For example, the model projection labeled 1 identifies the known distributional area. Projected area 2 identifies part of the actual distribution that is currently unknown; however, a portion of the actual distribution is not predicted because the observed occurrence records do not identify the full extent of the occupied niche (i.e. there is incomplete sampling; see area D in Fig. 2). Similarly, modeled area 3 identifies an area of potential distribution that is not inhabited (the full extent of the potential distribution is not identified because the observed occurrence records do not identify the full extent of the fundamental niche due to, for example, incomplete sampling, biotic interactions, or constraints on species dispersal; see areas D and E in Fig. 2).
-Uses of species’ distribution models
+
+### Uses of species’ distribution models
+
 Consider modeled area 2 in Fig. 3, which identifies part of the actual distribution for which no occurrence records have been collected. Although the model does not predict the full extent of the actual distribution, additional sampling in the area identified may yield new occurrence records. A number of studies have demonstrated the utility of species’ distribution modeling for guiding field surveys toward regions where there is an increased probability of finding new populations of a known species (Fleishman et al. 2002; Bourg et al. 2005; Guisan et al. 2006; also see Case Study 1). Accelerating the discovery of new populations in this way may prove extremely useful for conservation planning, especially in poorly known and highly threatened landscapes.
 
 Consider now predicted area 3 in Fig. 3. Here, the model identifies an area of potential distribution that is environmentally similar to where the species is known to occur, but which is not inhabited. The full extent of the potential distribution is not predicted, but the model can be useful for identifying sites that may be suitable for reintroduction of a species (Pearce and Lindenmayer 1998) or sites where a species is most likely to become invasive (if it overcomes dispersal barriers and if biotic competition does not prevent establishment; Peterson 2003). Model predictions of this type also have the potential to accelerate the discovery of previously unknown species that are closely related to the modeled species and that occupy similar environmental space but different geographical space (Raxworthy et al. 2003; see Case Study 1).
@@ -204,9 +167,9 @@ Model extrapolation: ‘Extrapolation’ refers to the use of a model to make pr
 
 The lure of complicated technology: Many approaches to modeling species’ distributions utilize complex computational technology (e.g. machine learning tools such as artificial neural networks and genetic algorithms) along with huge GIS databases of digital environmental layers. In some cases, these approaches can yield highly successful predictions. However, there is a risk that model users will be swayed by the apparent complexity of the technology: ‘it is so complicated, it must be correct’! Always remember that a model can only be useful if the theoretical underpinnings on which it is based are sound. For additional discussion of the limitations of ecological models, see the NCEP module Applications of remote sensing to ecological modeling.
 
-PART B: DEVELOPING A SPECIES’ DISTRIBUTION MODEL
+# PART B: DEVELOPING A SPECIES’ DISTRIBUTION MODEL
 
-DATA TYPES AND SOURCES
+## DATA TYPES AND SOURCES
 
 Correlative species’ distribution models require two types of data input: biological data, describing the known species’ distribution, and environmental data, describing the landscape in which the species is found. This section discusses the types of data that are suitable for distribution modeling, and reviews some possible sources of data (see Table 2).
 
@@ -252,7 +215,8 @@ Box 2. The Role of Geographic Information Systems (GIS)
 
 GIS is a vital tool in species’ distribution modeling. The large datasets of biological and environmental data that are used in distribution modeling are ideally suited to being stored, viewed and formatted in a GIS. For example, useful GIS operations include changing geographic reference systems (it is essential that all data are referenced to a common coordinate system, so occurrence records can be matched with the environmental conditions at the site), reformatting spatial resolution, and interpolating point locality data to a grid. GIS is also crucial for visualizing model results and carrying out additional processing of model output, such as removing predicted areas that are isolated from observed species records by a dispersal barrier (Peterson et al. 2002). However, the distribution modeling itself is usually undertaken outside the GIS framework. With few exceptions (e.g., Ferrier et al. 2002), the distribution model does not ‘see’ geographical coordinates; instead, the model operates in environmental space (see Section 2). Some GIS platforms now incorporate distribution modeling tools (e.g. DIVA GIS: www.diva-gis.org/, IDRISI: http://www.clarklabs.org/), or have add-in scripts that enable distribution models to be run (e.g., BIOCLIM script for ArcView: http://arcscripts.esri.com/details.asp?dbid=13745), but running the model within a GIS is not necessary.
 
-Biological data
+### Biological data
+
 Data describing the known distribution of a species may be obtained in a variety of ways:
 
 1)	Personal collection: occurrence localities can be obtained during field surveys by an individual or small group of researchers. For example, Fleishman et al. (2001) built models using butterfly occurrence records collected by the researchers during surveys in Nevada, USA.
@@ -264,7 +228,8 @@ Species distribution data may be either presence-only (i.e., records of localiti
 
 There are a number of additional potential sources of bias and error that should be carefully considered when collating species’ distribution data. Errors may arise through the incorrect identification of species, or inaccurate spatial referencing of samples. Biases can also be introduced because collectors tend to sample in easily accessible locations, such as along roads and rivers and near towns or biological stations (Graham et al. 2004a). In some cases, biased sampling in geographical space may lead to non-representative sampling of the available environmental conditions, although this is not necessarily the case. When utilizing records from museum collections, it should be remembered that these data were not generally collected with the purpose of determining the distributional limits of a species; rather, sampling for museum collections tends to be biased toward rare and previously unknown species.
 
-Environmental data
+### Environmental data
+
 A wide range of environmental input variables have been employed in species’ distribution modeling. Most common are variables relating to climate (e.g., temperature, precipitation), topography (e.g., elevation, aspect), soil type and land cover type (see Table 2). Variables tend to describe primarily the abiotic environment, although there is potential to include biotic interactions within the modeling. For example, Heikkinen et al. (2007) used the distribution of woodpecker species to predict owl distributions in Finland since woodpeckers excavate cavities in trees that provide nesting sites for owls.
 
 As noted in Section 1, variables are often processed to generate new variables that are thought to have a direct physiological or behavioral role in determining species’ distributions. In general, it is advisable to avoid predictor variables that have an indirect influence on species’ distributions, since indirect associations may cause erroneous predictions when models are used to predict the species’ distribution in new regions or under alternative climate scenarios (Guisan and Thuiller 2005). For example, species do not respond directly to elevation, but rather to changes in temperature and air pressure that are affected by elevation. Thus, a species characterized as living at high elevation in a low latitude region may, in fact, be associated with lower elevations in areas with higher latitude, since the regional climate is cooler.
@@ -273,7 +238,7 @@ Environmental variables may comprise either continuous data (data that can take 
 
 Modern technologies, including remote sensing (see NCEP module Applications of remote sensing to ecological modeling), the internet, and GIS have greatly facilitated the collection and dissemination of environmental datasets (see Table 2). In addition, global climate models have been used to generate scenarios of future climates and to simulate climatic conditions since the end of the last glacial period (see Table 2). Predicted future climate scenarios can be used to estimate the potential impacts of climate change on biodiversity (e.g., Thomas et al. 2004; see case study 3), whilst simulations of past climates can be used to test the predictive ability of models (e.g. Martinez-Meyer et al. 2004). Given the vast amounts of data that are available, it is especially important to remain critical as to which variables are suitable for inclusion in the model. Some studies have demonstrated good predictive ability using only three variables (e.g., Huntley et al. 1995), whilst other studies have applied methodologies that can incorporate many more variables (e.g., Phillips et al. 2006 utilized 14 environmental variables, although some of these variables are likely to have been rejected by the algorithm applied because they did not provide useful information beyond that which was included in other variables).
 
-MODELING ALGORITHMS
+## MODELING ALGORITHMS
 
 A number of alternative modeling algorithms have been applied to classify the probability of species’ presence (and absence) as a function of a set of environmental variables. The task is to identify potentially complex non-linear relationships in multi-dimensional environmental space. In Section 2 we assumed that the modeling algorithm is excellent, enabling us to identify three expected types of model prediction, illustrated by modeled areas 1, 2 and 3 in Fig. 3. If we now admit some degree of error in the algorithm’s ability to fit the observed records, then a fourth type of prediction will occur: the model will predict as suitable areas that are part of neither the actual nor the potential distribution. The most useful algorithms will limit these erroneous ‘type 4’ predictions.
 
@@ -335,7 +300,8 @@ For a concise mathematic definition of Maxent and for more detailed discussion o
 
 The model algorithm is in some ways the ‘core’ of the distribution model, but it should be remembered that the algorithm is just one part of the broader modeling process; other factors, including selection of environmental variables (Section 3) and application of a decision threshold (Section 5), are key elements of the modeling process that affect model results and may be varied regardless of the model algorithm being used. Nevertheless, studies comparing different modeling algorithms have demonstrated substantial differences between predictions from alternative methods. The importance of selecting an appropriate algorithm is discussed below.
 
-Differences between methods and selection of ‘best’ models
+### Differences between methods and selection of ‘best’ models
+
 Given the variety of possible modeling methods (Table 3), it is important to consider the degree to which different methods yield different results. Furthermore, if model predictions differ substantially, how should we choose which method to apply? This is an active area of research, and unfortunately there are no simple answers.
 
 A number of studies have demonstrated that different modeling approaches have the potential to yield substantially different predictions (e.g., Brotons et al. 2004; Elith et al. 2006; Loiselle et al. 2003; Pearson et al. 2006; Segurado and Araújo 2004; Thuiller 2003; Thuiller et al. 2004). Pearson et al. (2006) found especially large differences among predictions of changes in range size under future climate change scenarios based on nine alternative modeling methods. Predicted changes in range size differed in both magnitude and direction (e.g., from 92% range reduction to 322% range increase for a single species). In another study, Loiselle et al. (2003) demonstrated markedly different results when alternative distribution models were used alongside a reserve selection algorithm for identifying priority sites for conservation.
@@ -348,11 +314,12 @@ In view of these differences among models, selection of an appropriate algorithm
 
 In practice, model selection will be influenced by factors including whether observed absence data are available, whether data on some of the environmental variables are categorical, and whether it is important to evaluate the influence of different variables on the model prediction. We recommend that modeling efforts apply and examine predictions from a range of methods in order to quantify uncertainty arising from the choice of method and to identify when different models are in agreement. Perhaps most importantly, it is vital that the assumptions and behavior of any model are properly understood (e.g. how does the model deal with environmental conditions that are beyond the range of the data used to calibrate the model?) so that model output can be accurately interpreted.
 
-ASSESSING PREDICTIVE PERFORMANCE
+## ASSESSING PREDICTIVE PERFORMANCE
 
 Assessing the accuracy of a model’s predictions is commonly termed ‘validation’ or ‘evaluation’, and is a vital step in model development. Application of the model will have little merit if we have not assessed the accuracy of its predictions. Validation thus enables us to determine the suitability of a model for a specific application and to compare different modeling methods (Pearce and Ferrier 2000). This section discusses different approaches for assessing predictive performance, including strategies for obtaining data against which the predictions can be compared, methods for selecting thresholds of occurrence, and various test statistics. As in previous sections, there is no single approach that can be recommended for use in all modeling exercises; rather, the choice of validation strategy will be influenced by the aim of the modeling effort, the types of data available, and the modeling method used.
 
-Strategies for obtaining test data
+### Strategies for obtaining test data
+
 In order to test predictive performance it is necessary to have data against which the model predictions can be compared. We can refer to these as test data (sometimes called evaluation data) to distinguish them from the calibration data (sometimes called training data) that are used to build the model. It is fairly common for studies to assess predictive performance by simply testing the ability of the model to predict the calibration data (i.e., calibration and test datasets are identical). However, this approach makes it difficult to identify models that have over-fit the calibration data (meaning the model is able to accurately classify the calibration data, but the model performs poorly when predicting test data), making it impossible for users to judge how well the model may perform when making predictions (Araújo et al. 2005a). It is therefore preferable to use test data that are different from the calibration data.
 
 Ideally, test data would be collected independently from the data used to calibrate the model. For example, Fleishman et al. (2002) modeled the occurrence of butterfly species in Nevada, USA, using species inventory data collected during the period 1996-1999, and then tested the models using data collected from new sites during 2000-2001 (see Case Study 1 for a comparable study). Other researchers have undertaken validation using independent data from different regions (e.g., Beerling et al. 1995; Peterson 2003), data at different spatial resolution (e.g., Araújo et al. 2005b; Pearson et al. 2004), data from different time periods (e.g. Araújo et al. 2005a), and data from surveys conducted by other researchers (Elith et al. 2006).
@@ -362,7 +329,8 @@ However, in practice it may not be possible to obtain independent test data and 
 Another useful data partitioning method is k-fold partitioning. Here, data are split into k parts of roughly equal size (k > 2) and each part is used as a test set with the other k-1 sets used for model calibration. Thus, if we select k = 5 then five models will be calibrated and each model tested against the excluded test data. Validation statistics are then reported as the mean and range from the set of k tests (Fielding and Bell 1997). An extreme form of k-fold partitioning, with k equal to the number of occurrence localities, is recommended for use with very low sample sizes (e.g., < 20; Pearson et al. 2007). This method is termed ‘jackknifing’ or ‘leave-one-out’ since each occurrence locality is excluded from model calibration during one partition.
 The following sub-sections describe validation statistics that can be calculated after test data have been obtained using one of the above approaches.
 
-The presence/absence confusion matrix
+### The presence/absence confusion matrix
+
 If a model is used to predict a set of test data, predictive performance can be summarized in a confusion matrix. Note that binary model predictions (i.e. predictions of suitable and unsuitable, rather than probabilities; see section 4) are required in order to complete the confusion matrix. Later subsections describe methods for converting continuous model outputs into binary predictions (see Selecting thresholds of occurrence) and for assessing predictive performance using continuous predictions (see Threshold-independent assessment). However, in order to understand these later sections it is important to first look at the confusion matrix.
 
 The confusion matrix is rather more straightforward than its name suggests, and is alternatively termed an ‘error matrix’ or a ‘contingency table’. The confusion matrix records the frequencies of each of the four possible types of prediction from analysis of test data: (a) true positive (the model predicts that the species is present and test data confirms this to be true), (b) false positive (the model predicts presence but test data show absence), (c) false negative (the model predicts absence but test data show presence), (d) true negative (the model predicts and the test data show absence). Frequencies are commonly recorded in a confusion matrix with the following form:
@@ -416,7 +384,8 @@ Another statistic that can be derived from the confusion matrix is the proportio
 
 This statistic is commonly termed ‘specificity’ or ‘true negative fraction’. Specificity is rarely used as a test statistic on its own, since specificity focuses solely on observed absence records. However, specificity is an important measure used in setting decision thresholds and in ROC analysis, which are described in the following two subsections.
 
-Selecting thresholds of occurrence
+### Selecting thresholds of occurrence
+
 Binary predictions of ‘present’ or ‘absent’ are necessary to test model performance using statistics derived from the confusion matrix. It is therefore often useful to convert continuous model output into binary predictions by setting a threshold probability value above which the species is predicted to be present. Although an alternative test statistic that does not require a threshold is available (Area Under the ROC curve; see the following subsection), this approach is not suitable in many circumstances (notably when absence records are not available, Boyce et al. 2002, but see Phillips et al. 2006). Furthermore, it is essential to learn the techniques described in this subsection to understand how the AUC test operates.
 
 A number of different methods have been employed for selecting thresholds of occurrence (Table 4). Perhaps the simplest approach is to use an arbitrary value, but this method is subjective and lacks ecological reasoning (Liu et al. 2005). Other methods use criteria that are based on the data used to calibrate the model. One approach is to use the lowest predicted value of environmental suitability, or probability of presence, across the set of sites at which a species has been detected. This method assumes that species presence is restricted to locations equally or more suitable than those at which the species has been observed. The approach therefore identifies the minimum area in which the species occurs whilst ensuring that no localities at which the species has been observed are omitted (i.e., omission rate = 0, and sensitivity = 1). An alternative approach is to set the threshold to allow a certain amount of omission (e.g. 5%), which is analogous to setting a fixed sensitivity (e.g., 0.95). This method is less sensitive than the lowest predicted value method to ‘outliers’ (i.e. locations in which the species is detected despite a low predicted probability of occurrence or suitability), but errors of omission are imposed (i.e., some observed localities will be omitted from the prediction).
@@ -458,7 +427,8 @@ Methods that use only presence records for setting a threshold are required for 
 
 As a final illustration of the importance of selecting an appropriate decision threshold, we can return to an example raised in Section 2. If the purpose of modeling is to identify areas within which disturbance may impact a species negatively (e.g., as part of an environmental impact assessment), then the threshold may be set low to identify a larger area of potentially suitable habitat. In contrast, if the model was intended to identify potential introduction or reintroduction sites for an endangered species or species of recreational value, then it would be appropriate to choose a relatively high threshold. Choosing a high threshold reduces the risk of choosing unsuitable sites by identifying those areas with highest suitability (Pearce and Ferrier 2000).
 
-Threshold-independent assessment
+### Threshold-independent assessment
+
 When model output is continuous, assessment of predictive performance using statistics derived from the confusion matrix will be sensitive to the method used to select a threshold for creating a binary prediction. Furthermore, if predictions are binary, the assessment of performance does not take into account all of the information provided by the model (Fielding and Bell 1997). Therefore, it is often useful to derive a test statistic that provides a single measure of predictive performance across the full range of possible thresholds. This can be achieved using a statistic known as AUC: the Area Under the Receiver Operating Characteristic Curve.
 
 The AUC test is derived from the Receiver Operating Characteristic (ROC) Curve. The ROC curve is defined by plotting sensitivity against ‘1 – specificity’ across the range of possible thresholds (Figure 6A). Sensitivity and specificity are used because these two measures take into account all four elements of the confusion matrix (true and false presences and absences). It is conventional to subtract specificity from 1 (i.e., 1 – specificity) so that both sensitivity and specificity vary in the same direction when the decision threshold is adjusted (Pearce and Ferrier 2000). The ROC curve thus describes the relationship between the proportion of observed presences correctly predicted (sensitivity) and the proportion of observed absences incorrectly predicted (1 – specificity). Therefore, a model that predicts perfectly will generate an ROC curve that follows the left axis and top of the plot, whilst a model with predictions that are no better than random (i.e. is unable to classify accurately sites at which the species is present and absent) will generate a ROC curve that follows the 1:1 line (Figure 6A).
@@ -473,7 +443,8 @@ AUC is a test that uses both presence and absence records. However, Phillips et 
 
 A number of different methods can be used to compute the AUC (Pearce and Ferrier 2000). Some distribution modeling programs automatically calculate the AUC (e.g., Maxent; Table 3). The statistic can also be calculated using numerous other free software packages (e.g. R, for free download see http://www.r-project.org/).
 
-Choosing a suitable test statistic
+### Choosing a suitable test statistic
+
 The choice of test statistic depends largely on how the model will be applied. If the aim is to predict the actual distribution (Section 2) then use of a test that incorporates both presence and absence records may be preferable (e.g., accuracy or Kappa). A good model will successfully predict both presences and absences with equal frequency. However, when using this approach it is important to realize that predictions that an unoccupied area is environmentally suitable (type 3 predictions, Figure 3) are considered model errors. Because type 3 predictions are theoretically expected (Section 2), models may be judged poor although they make biologically sound predictions.
 
 If the aim of the modeling is to estimate the potential distribution (Section 2) then presence-only assessment of model performance using sensitivity and statistical significance is likely to be preferable. In this case we cannot test if the model is correct (since we do not know the true potential distribution), but rather we test if the model is useful. Our criteria for usefulness are that the model successfully predicts presence in a high proportion of test localities (i.e., known occurrences) whilst not predicting that an excessively large proportion of the study area is suitable. Thus, a model that successfully predicts whether the species is present at all test localities whilst classifying most of the study area as suitable may be correct (the environment may truly be suitable throughout most of the study area); however, the model is not useful because it is not more informative than a random prediction. 
@@ -481,9 +452,9 @@ If the aim of the modeling is to estimate the potential distribution (Section 2)
 Subjective guidelines can be used to decide what values of a test statistic correspond to ‘good’ model performance. For example, Landis and Koch (1977) suggested that Kappa scores >0.75 represent an ‘excellent’ model, whilst Swets (1988) classified any AUC score >0.9 as ‘very good’. However, the only true test of the model is whether it is useful for a given application. There are numerous potential applications of these methods (Table 1) and the final part of this synthesis describes three representative case studies.
 
  
-PART C: CASE STUDIES
+# PART C: CASE STUDIES
 
-CASE STUDY 1: PREDICTING DISTRIBUTIONS OF KNOWN AND UNKNOWN SPECIES IN MADAGASCAR (BASED ON RAXWORTHY ET AL. 2003)
+## CASE STUDY 1: PREDICTING DISTRIBUTIONS OF KNOWN AND UNKNOWN SPECIES IN MADAGASCAR (BASED ON RAXWORTHY ET AL. 2003)
 
 Our knowledge of the identity and distribution of species on Earth is remarkably poor, with many species yet to be described and catalogued. This problem has two key elements, which may be termed the ‘Linnean’ and ‘Wallacean’ shortfalls (Whittaker et al. 2005). The Linnean shortfall refers to our lack of knowledge of how many, and what kind of species exist. The term is a reference to Carl Linnaeus, who laid the foundations of modern taxonomy and the 18th century. The Linnean shortfall concerns our highly incomplete knowledge of the diversity of life that exists on Earth.
 
@@ -497,7 +468,7 @@ Raxworthy et al. (2003) thus demonstrated the potential for species’ distribut
 
 Raxworthy et al. (2003) also demonstrated that the models can help to address the Linnean shortfall by guiding field surveys toward areas where species new to science are most likely to be discovered. In this case the approach makes use of the type of model prediction illustrated by area 3 in Figure 3: areas are identified that are unoccupied by the species being modeled, but where closely-related species that occupy similar environmental space are most likely to be found. By surveying sites identified by the distribution models for known species, Raxworthy et al. (2003) discovered seven new species, considerably greater than the number that would usually be expected on the basis of similar survey effort across a less-targeted area.
 
-CASE STUDY 2: SPECIES’ DISTRIBUTION MODELING AS A TOOL FOR PREDICTING INVASIONS OF NON-NATIVE PLANTS (BASED ON THUILLER ET AL. 2005)
+## CASE STUDY 2: SPECIES’ DISTRIBUTION MODELING AS A TOOL FOR PREDICTING INVASIONS OF NON-NATIVE PLANTS (BASED ON THUILLER ET AL. 2005)
 
 Invasive species are increasingly a global concern, with invasions altering ecosystem functioning, threatening native biodiversity, and negatively impacting agriculture, forestry and human health. Species’ distribution modeling can be used to identify areas that are most likely to be colonized by a known invader. The general approach is to model the distribution of a species using occurrence records from its native range, then project the model into new regions to assess susceptibility to invasion. The approach makes use of the type of model prediction illustrated by area 3 in Figure 3: areas are identified that are part of the potential, but not actual, distribution. Thuiller et al. (2005) used this method to identify parts of the world that are potentially susceptible to invasion by plant species native to South Africa.
 
@@ -509,7 +480,7 @@ The second step in the study was to project the calibrated models worldwide. The
 
 In a further step, Thuiller and colleagues summed the probability surfaces for all 96 taxa to produce a global map for risk of invasion by species of South African origin. Parts of the world most susceptible to invasion included six biodiversity ‘hotspots’, including the Mediterranean Basin, California Floristic Province, and southwest Australia. This study demonstrates that species distribution modeling can be a valuable tool for identifying sites prone to invasion. Such sites may be prioritized for monitoring and quarantine measures can be put in place to help avoid the establishment of invasive species.
 
-CASE STUDY 3: MODELING THE POTENTIAL IMPACTS OF CLIMATE CHANGE ON SPECIES’ DISTRIBUTIONS IN BRITAIN AND IRELAND (BASED ON BERRY ET AL. 2002)
+## CASE STUDY 3: MODELING THE POTENTIAL IMPACTS OF CLIMATE CHANGE ON SPECIES’ DISTRIBUTIONS IN BRITAIN AND IRELAND (BASED ON BERRY ET AL. 2002)
 
 Climate change has the potential to significantly impact the distribution of species. Species’ distribution models have been used in a number of studies that aim to predict the likely redistribution of species under projected climate change over the coming century. The general approach is to calibrate the models based on current distributions of species and then predict future distributions of those species across landscapes for which the environmental input variables have been perturbed to reflect expected changes.
 
@@ -521,11 +492,11 @@ Evaluation of the models was undertaken at the European scale by comparing model
 
 The models calibrated for Europe were then used to predict distributions in Britain and Ireland under current and projected future climates. Berry et al. (2002) emphasized that they did not predict actual distributions, but rather ‘bioclimate envelopes’, or suitable climate space. It is important to remember that actual future distributions will be determined by many factors that are not taken into account in the modeling, including the ability of species to colonize areas that become suitable. Nevertheless, the distribution models enabled each species to be placed in one of three categories: those expected to lose suitable climate space, those expected to gain suitable climate space, and those showing little change. Species’ distribution modeling thus enables preliminary assessments of the possible impacts of climate change to be made, providing information that may be valuable in developing conservation policies to address the threat.
 
-ACKNOWLEDGEMENTS
+# ACKNOWLEDGEMENTS
 
 Thorough comments from five anonymous reviewers greatly improved the module. The module also benefitted significantly from editorial input by Ian Harrison and the rest of the NCEP team. Extensive discussions with Robert Anderson, Catherine Graham, Steven Phillips, Town Peterson, Chris Raxworthy, Jorge Sóberon, and members of the New York Species Distribution Modeling Discussion Group greatly contributed to the module. I am also indebted to comments and discussion by participants in courses I have taught through the American Museum of Natural History, and the Global Biodiversity Information Facility.
 
-REFERENCES
+# REFERENCES
 
 Anderson, R.P., M. Gomez-Laverde, and A.T. Peterson. 2002a. Geographical distributions of spiny pocket mice in South America: Insights from predictive models. Global Ecology and Biogeography 11:131-141.
 Anderson, R.P., A.T. Peterson, and M. Gómez-Laverde. 2002b. Using niche-based GIS modeling to test geographic predictions of competitive exclusion and competitive release in South American pocket mice. Oikos 98:3-16
