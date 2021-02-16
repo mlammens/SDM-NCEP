@@ -8,10 +8,12 @@ output:
 # To-Dos
 
 * Update of references - this was written in 2008. There are 12 years of references to consider!
+    * Read through Wallace guidance and consider refs cited there as a good start.
 * Make sure to update linked Maxent tutorial to coincide with most recent one
 * Consider length - guidelines are for between 5-10 pages. Not really sure we can get it that low.
 * Example - make an example using Wallace, or consider adding the vignette.
 * Use Wallace version 2?
+* Make sure to cite ATP course as a great open source resource.
 
 ***
 
