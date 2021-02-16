@@ -5,6 +5,19 @@ output:
     toc: yes
 ---
 
+# To-Dos
+
+* Update of references - this was written in 2008. There are 12 years of references to consider!
+* Make sure to update linked Maxent tutorial to coincide with most recent one
+* Consider length - guidelines are for between 5-10 pages. Not really sure we can get it that low.
+* Example - make an example using Wallace, or consider adding the vignette.
+* Use Wallace version 2?
+
+***
+
+
+
+
 Author: Richard G. Pearson
 
 
